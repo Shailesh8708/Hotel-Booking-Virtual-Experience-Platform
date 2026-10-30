@@ -1,0 +1,271 @@
+@import "tailwindcss";
+
+/* ==========================================================================
+   VILLA AURELIA — CINEMATIC LUXURY MEDITERRANEAN ARCHITECTURE
+   ========================================================================== */
+
+:root {
+  --font-display: 'Fraunces', Georgia, serif;
+  --font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+
+  --ease-door: cubic-bezier(0.76, 0, 0.24, 1);
+  --ease-spring: cubic-bezier(0.16, 1, 0.3, 1);
+
+  /* Default Day Theme (Warm Italian Limestone & Sea Breeze) */
+  --bg-canvas: #F4EADC;
+  --bg-card: rgba(255, 252, 248, 0.85);
+  --bg-card-hover: rgba(255, 255, 255, 0.98);
+  --text-main: #1A100A;
+  --text-secondary: #5A4E46;
+  --text-muted: #84756B;
+  --color-accent: #A85A32;
+  --color-accent-soft: rgba(168, 90, 50, 0.12);
+  --border-subtle: rgba(26, 16, 10, 0.12);
+  --border-hover: rgba(26, 16, 10, 0.28);
+  --shadow-warm: 0 20px 45px -15px rgba(60, 40, 25, 0.12);
+  --glass-nav: rgba(244, 234, 220, 0.85);
+}
+
+html[data-theme='night'] {
+  /* Night Theme (Midnight Mediterranean Umber & Amber Lantern Glow) */
+  --bg-canvas: #120A06;
+  --bg-card: rgba(24, 14, 9, 0.8);
+  --bg-card-hover: rgba(32, 19, 13, 0.92);
+  --text-main: #F4EADC;
+  --text-secondary: #C8BAAC;
+  --text-muted: #9A8C7F;
+  --color-accent: #E07A48;
+  --color-accent-soft: rgba(224, 122, 72, 0.18);
+  --border-subtle: rgba(244, 234, 220, 0.12);
+  --border-hover: rgba(244, 234, 220, 0.3);
+  --shadow-warm: 0 25px 50px -15px rgba(0, 0, 0, 0.7);
+  --glass-nav: rgba(18, 10, 6, 0.88);
+}
+
+html {
+  scroll-behavior: smooth;
+  background-color: var(--bg-canvas);
+  color: var(--text-main);
+  font-family: var(--font-sans);
+  font-size: 16px;
+  line-height: 1.6;
+  overflow-x: hidden;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
+
+body {
+  background-color: var(--bg-canvas);
+  color: var(--text-main);
+  overflow-x: hidden;
+  min-height: 100vh;
+  transition: background-color 0.6s var(--ease-door), color 0.6s var(--ease-door);
+}
+
+/* Typography Helpers */
+.font-display {
+  font-family: var(--font-display);
+  font-optical-sizing: auto;
+}
+
+.font-sans {
+  font-family: var(--font-sans);
+}
+
+.font-mono {
+  font-family: var(--font-mono);
+}
+
+/* Editorial Glass & Stone Panels */
+.villa-card {
+  background: var(--bg-card);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  box-shadow: var(--shadow-warm), inset 0 1px 1px 0 rgba(255, 255, 255, 0.2);
+  transition: all 0.4s var(--ease-spring);
+}
+
+.villa-card:hover {
+  background: var(--bg-card-hover);
+  border-color: rgba(255, 255, 255, 0.35);
+}
+
+/* Feature 1C: Refined Soft Glassmorphism & Refraction */
+.villa-glass {
+  background: var(--bg-card);
+  backdrop-filter: blur(16px) saturate(180%);
+  -webkit-backdrop-filter: blur(16px) saturate(180%);
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  box-shadow: 0 8px 30px -5px rgba(26, 16, 10, 0.08), inset 0 1px 1px 0 rgba(255, 255, 255, 0.35);
+  position: relative;
+  transition: all 0.35s var(--ease-spring);
+}
+
+html[data-theme='night'] .villa-glass {
+  background: rgba(24, 14, 9, 0.82);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  box-shadow: 0 16px 40px -10px rgba(0, 0, 0, 0.7), inset 0 1px 1px 0 rgba(255, 200, 160, 0.18);
+}
+
+.villa-glass:hover {
+  background: var(--bg-card-hover);
+  border-color: rgba(255, 255, 255, 0.4);
+  box-shadow: 0 14px 36px -6px rgba(26, 16, 10, 0.15), inset 0 1px 2px 0 rgba(255, 255, 255, 0.5);
+}
+
+.villa-divider {
+  height: 1px;
+  background: linear-gradient(90deg, transparent 0%, var(--border-subtle) 20%, var(--border-subtle) 80%, transparent 100%);
+  width: 100%;
+}
+
+/* Rolling Text Hover Animation (.roll, .roll-a, .roll-b) */
+.roll {
+  display: inline-block;
+  overflow: hidden;
+  vertical-align: middle;
+  height: 1.25em;
+  position: relative;
+  white-space: nowrap;
+}
+
+.roll-a,
+.roll-b {
+  display: block;
+  white-space: nowrap;
+  transition: transform 0.45s var(--ease-door);
+}
+
+.roll-b {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  color: var(--color-accent);
+}
+
+.roll:hover .roll-a,
+button:hover .roll .roll-a,
+a:hover .roll .roll-a {
+  transform: translateY(-100%);
+}
+
+.roll:hover .roll-b,
+button:hover .roll .roll-b,
+a:hover .roll .roll-b {
+  transform: translateY(-100%);
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: var(--bg-canvas);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--border-subtle);
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-accent);
+}
+
+/* Buttons with Refined Glassmorphism & Refraction Highlight */
+.btn-stone {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.65rem;
+  padding: 0.85rem 1.8rem;
+  background: var(--text-main);
+  color: var(--bg-canvas);
+  font-family: var(--font-sans);
+  font-size: 0.88rem;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  border-radius: 9999px;
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 4px 20px -4px rgba(26, 16, 10, 0.25), inset 0 1px 1px 0 rgba(255, 255, 255, 0.35);
+  transition: all 0.35s var(--ease-spring);
+  text-decoration: none;
+}
+
+.btn-stone::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 9999px;
+  background: radial-gradient(circle at 50% 0%, rgba(255, 255, 255, 0.25) 0%, transparent 70%);
+  opacity: 0;
+  transition: opacity 0.35s var(--ease-spring);
+  pointer-events: none;
+}
+
+.btn-stone:hover {
+  transform: translateY(-1px) scale(1.02);
+  box-shadow: 0 12px 30px -6px rgba(26, 16, 10, 0.35), inset 0 1px 2px 0 rgba(255, 255, 255, 0.5);
+}
+
+.btn-stone:hover::after {
+  opacity: 1;
+}
+
+.btn-stone-outline {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.65rem;
+  padding: 0.85rem 1.8rem;
+  background: var(--bg-card);
+  backdrop-filter: blur(16px) saturate(180%);
+  -webkit-backdrop-filter: blur(16px) saturate(180%);
+  color: var(--text-main);
+  font-family: var(--font-sans);
+  font-size: 0.88rem;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  border-radius: 9999px;
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  box-shadow: 0 4px 15px -3px rgba(26, 16, 10, 0.06), inset 0 1px 1px 0 rgba(255, 255, 255, 0.25);
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.35s var(--ease-spring);
+  text-decoration: none;
+}
+
+.btn-stone-outline::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 9999px;
+  background: radial-gradient(circle at 50% 0%, rgba(255, 255, 255, 0.2) 0%, transparent 75%);
+  opacity: 0;
+  transition: opacity 0.35s var(--ease-spring);
+  pointer-events: none;
+}
+
+.btn-stone-outline:hover {
+  border-color: rgba(255, 255, 255, 0.45);
+  background: var(--bg-card-hover);
+  transform: translateY(-1px) scale(1.02);
+  box-shadow: 0 10px 25px -4px rgba(26, 16, 10, 0.12), inset 0 1px 2px 0 rgba(255, 255, 255, 0.45);
+}
+
+.btn-stone-outline:hover::after {
+  opacity: 1;
+}
+
+/* Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.001s !important;
+    transition-duration: 0.001s !important;
+    scroll-behavior: auto !important;
+  }
+}
